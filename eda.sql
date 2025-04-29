@@ -13,8 +13,54 @@ WHERE percentage_laid_off = 1
 ORDER BY total_laid_off DESC;
 --116 companies let go of 100% of their employees
 
+-- Let's the amount of companies with 100% people laid off by country
+SELECT country, COUNT(*) as companies_closed
+FROM `layoffs_staging2`
+WHERE percentage_laid_off = 1
+GROUP BY country
+ORDER BY 2 DESC;
 
---Lets look at total layoffs bh company
+-- The top 5 are:
+-- United States(73), India(9), Australia(8), United Kingdom(5)
+-- With the USA being way ahead
+
+-- Lets calculate the ratio of total layoffs to total funds
+--raised (in millions) for each country
+-- A higher ratio suggests that companies in that country may have been
+--less efficient with funding, potentially overhiring
+WITH Country_Total AS (
+  SELECT
+    country,
+    SUM(funds_raised_millions) AS total_funds,
+    SUM(total_laid_off) AS total_laid_off
+  FROM layoffs_staging2
+  WHERE funds_raised_millions IS NOT NULL AND total_laid_off IS NOT NULL
+  GROUP BY country
+)
+
+SELECT
+  country,
+  total_funds,
+  total_laid_off,
+  ROUND(total_laid_off / total_funds, 3) AS layoffs_per_million
+FROM Country_Total
+WHERE total_funds > 0
+ORDER BY layoffs_per_million DESC;
+-- Top 5 most efficient countries are:
+--Lithuania(0.002)
+--Netherlands(0.025)
+--Romania(0.107)
+--United Kingdom(0.143)
+--Norway(0.146)
+
+-- Top 5 least efficient countries are:
+--Russia(6.667)
+--Japan(3.269)
+--Finland(1.479)
+--Kenya(1.39)
+--Denmark(1.111)
+
+--Lets look at total layoffs by company
 SELECT company, SUM(total_laid_off)
 FROM `layoffs_staging2`
 GROUP BY company ORDER BY 2 DESC;
