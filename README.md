@@ -36,7 +36,8 @@ The dataset was cleaned prior to analysis:
 - **Meta**: 11,000
 - **Salesforce**: 10,090
 - **Philips** & **Microsoft**: 10,000
-- **116 companies** reported 100% layoffs.
+
+**116 companies** reported 100% layoffs (73 of them in the USA).
 
 ---
 
@@ -59,6 +60,30 @@ The dataset was cleaned prior to analysis:
 - **Brazil**: 10,391
 
 ---
+
+### 📈 Ratio of Total Layoffs to Total Funds
+A higher ratio suggests that companies in that country may have been 
+less efficient with funding, potentially overhiring
+
+Top - 5 most efficient countries: 
+
+| Country       | Layoffs to Funds Ratio |
+|---------------|------------------------|
+| Lithuania     | 0.002                  |
+| Netherlands   | 0.025                  |
+| Romania       | 0.107                  |
+| United Kingdom| 0.143                  |
+| Norway        | 0.146                  |`
+
+Top 5 least efficient countries are:
+
+| Country    | Layoffs to Funds Ratio |
+|------------|------------------------|
+| Russia     | 6.667                  |
+| Japan      | 3.269                  |
+| Finland    | 1.479                  |
+| Kenya      | 1.39                   |
+| Denmark    | 1.111                  |`
 
 ### 🚀 Layoffs by Company Stage
 | Stage        | Total Laid Off |
