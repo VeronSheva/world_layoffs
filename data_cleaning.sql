@@ -106,7 +106,7 @@ ON t1.company = t2.company
 SET t1.industry = t2.industry
 WHERE t1.industry IS NULL AND t2.industry IS NOT NULL;
 
--- Data with percentage and total laid off is useless, let's delete it
+-- Data with percentage and total laid off equal to null is useless, let's delete it
 
 SELECT COUNT(*) FROM `layoffs_staging2`
 WHERE percentage_laid_off IS NULL and total_laid_off IS NULL; -- 361 rows
